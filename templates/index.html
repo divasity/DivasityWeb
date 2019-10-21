@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<body>
+    <div id="wrapper">
+        <header class="flex  flex-row">
+            <h1 class="company-logo">Divasity</h1>
+            <nav id="main-nav">
+                <ul class="menu-items">
+                    <!-- <li class="menu-item"><a href="/">Nigeria</a></li> -->
+                    <div id="client-country-wrapper" class="flex">
+                        <div class="client-country-flag">
+                            <i class="fa fa-map"></i>
+                        </div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <div>
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+
+        <div id="login-container" class="flex flex-column">
+            <!-- <img src="./Mock Up/Login and sign up/WhatsApp_Image_2019-08-01_at_7.20.07_PM(1).jpeg" alt=""> -->
+            <div class="form-container flex flex-column">
+                <h1 class="title">Welcome to Divasity</h1>
+
+    </div>
+{% endblock content %}

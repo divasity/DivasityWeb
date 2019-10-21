@@ -1,0 +1,84 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+
+{% block content %}
+<h1>{% trans "Confirm E-mail Address" %}</h1>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+<body>
+    <div id="wrapper">
+        <header class="flex  flex-row">
+            <h1 class="company-logo">Divasity</h1>
+            <nav id="main-nav">
+                <ul class="menu-items">
+                    <!-- <li class="menu-item"><a href="/">Nigeria</a></li> -->
+                    <div id="client-country-wrapper" class="flex">
+                        <div class="client-country-flag">
+                            <i class="fa fa-map"></i>
+                        </div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <div>
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+
+        <div id="login-container" class="flex flex-column">
+            <!-- <img src="./Mock Up/Login and sign up/WhatsApp_Image_2019-08-01_at_7.20.07_PM(1).jpeg" alt=""> -->
+            <div class="form-container flex flex-column">
+                <h1 class="title">Welcome to Divasity</h1>
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+{% csrf_token %}
+    <button type="submit">{% trans 'Confirm' %}</button>
+</form>
+
+{% else %}
+
+{% url 'account_email' as email_url %}
+
+<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+
+{% endif %}
+<div class="social-login-options grid">
+    <span class="social-login btn-sm grid"><i class="fa fa-facebook"></i><span>Login with
+            Facebook</span></span>
+    <span class="social-login btn-sm grid"><i class="fa fa-linkedin"></i><span>Login with
+            LinkedIn</span></span>
+</div>
+
+<div class="divide-line flex flex-row">
+    <span class="hline"></span>
+    <p class="flex flex-column">OR</p>
+</div>
+
+<a href="{% url 'account_signup' %}" class="btn btn-full-width create-account-link">create an account</a>
+</div>
+</div>
+
+<footer>
+<div class="privacy-and-tou flex">
+<a href="terms-of-use.html" class="tou">terms of use</a>
+<div class="vline"></div>
+<a href="privacy.html" class="privacy">privacy policy</a>
+</div>
+</footer>
+</div>
+{% endblock %}

@@ -1,0 +1,467 @@
+@import 'partials/reset';
+@import 'partials/variables';
+@import 'partials/mixins';
+@import 'partials/utils';
+
+// Importing Font From Google Fonts CDN
+@include google-font('Montserrat');
+
+img {
+    width: 100%;
+}
+
+
+/* ******* APP STYLES ******* */
+#wrapper {
+    width: 100%;
+    min-height: 100vh;
+    @include background(linear-gradient(135deg, rgba(13, 0, 0, 0.87) 40%, rgba(9, 1, 37, 0.28)), url('../src/img/divacity-login-register-banner.jpg'), $bcg-position: 0 0);
+    @include background(linear-gradient(135deg, #3d1053, 40%, rgba(15, 1, 37, 0.527)), url('../src/img/divacity-login-register-banner.jpg'), $bcg-position: 0 0);
+    // overflow-x: hidden;
+}
+
+/* ****** Header and main Navigation ****** */
+header {
+    height: $headerHeight-sm;
+    background: transparent;
+    justify-content: space-between;
+    @include alignItems(center);
+    padding: 0 $mainPadding-x;
+    color: $white;
+
+    .company-logo {
+        font-family: $secondaryFont;
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: $secondaryColor;
+    }
+
+    #main-nav {
+        .menu-items {
+            .menu-item {
+                a {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    #client-country-wrapper {
+        background-color: $white;
+        padding: 0.3em;
+        @include borderRadius(5px);
+
+        .client-country-flag {
+            margin-right: 0.2em;
+
+            i {
+                color: green;
+            }
+        }
+
+        i[class*="caret"] {
+            color: $gray;
+            margin-right: 0.4em;
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        height: $headerHeight-lg;
+    }
+}
+
+/* Login and Register Forms - Global Styles */
+#login-container,
+#signup-container {
+    min-height: calc(100% - 40px * 2);
+    justify-content: center;
+    border-top: 1px solid $white;
+    border-bottom: 1px solid $white;
+
+    .btn {
+        background-color: $offWhite;
+        color: $secondaryColor;
+    }
+
+    .btn:hover,
+    a:hover {
+        opacity: 0.856;
+    }
+
+    .form-container {
+        height: 100%;
+        width: 90%;
+        max-width: 400px;
+        margin: $headerHeight-sm auto;
+        color: $white;
+        justify-content: center;
+
+        >h1.title {
+            text-align: center;
+        }
+
+        .form {
+            margin-bottom: 0.5em;
+        }
+
+        .form,
+        .input-group,
+        .form-group,
+        .form-control {
+            width: 100%;
+        }
+
+        .input-group,
+        .input[type=submit] {
+            @include borderRadius(3px);
+        }
+
+
+        .form .input-group {
+            padding: 1.2em 1em;
+            border: 1px solid $offWhite;
+            // background-color: $secondaryColor;
+
+            .form-group {
+                position: relative;
+
+                label {
+                    margin: 0 0 0.5em;
+                    cursor: pointer;
+                    font-weight: 100;
+                }
+
+                .form-control {
+                    border: 2px solid $white;
+                    background: transparent;
+                    @include textFontSize();
+                }
+            }
+        }
+
+        input[type=submit] {
+            margin-top: 1em;
+            border: 0.5px solid $secondaryColor;
+        }
+
+        [data-forgot-password] {
+            margin: 0.7em 0;
+            color: $offWhite;
+            text-align: center;
+            font-size: calc(0.75rem + 0.1vw);
+        }
+
+        @media screen and (min-width: 768px) {
+            margin: $headerHeight-lg auto;
+        }
+    }
+
+}
+
+
+/* Regristration Forms */
+#signup-container {
+    padding: 0.5em 0;
+
+    .btn {
+        background-color: $offWhite;
+        color: $secondaryColor;
+    }
+
+    .btn:hover,
+    a:hover {
+        opacity: 0.856;
+    }
+
+    .form-container {
+        min-height: 100vh;
+
+        .input-group,
+        .input[type=submit] {
+            @include borderRadius(3px);
+        }
+
+        .tab-controls {
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+            border: 1px solid $offWhite;
+            background-color: $white;
+            border-bottom: none;
+            @include borderRadius(10px 10px 0px 0px);
+            overflow: hidden;
+
+            .tab-control {
+                padding: 0.5em;
+                background-color: $white;
+                color: $secondaryColor;
+                text-transform: uppercase;
+                font-weight: 500;
+                @include textFontSize(0.875rem);
+                cursor: pointer;
+
+                &.active {
+                    background-color: $secondaryColor;
+                    color: $white;
+                    @include borderRadius(10px 10px 0px 0px);
+                }
+            }
+        }
+
+        .tabs {
+            .tab {
+                width: 100%;
+                opacity: 0;
+                display: none;
+                
+                &.active {
+                    display: block;
+                    opacity: 1;
+                    z-index: 2;
+                    .input-group{
+                        background-color: $secondaryColor;
+                    }
+                }
+            }
+        }
+
+        .form {
+
+            > p {
+                margin-top: 0.5em;
+
+                a {
+                    color: $secondaryColor;
+                }
+            }
+
+            .form-group {
+                label {
+                    margin: 0 0 0.1em;
+                    text-transform: capitalize;
+                }
+            }
+
+            .accept-t-and-c {
+                width: 100%;
+                margin-top: 1em;
+                grid-template-columns: 0.5fr 5.5fr;
+                @include alignItems(center);
+
+                .form-control {
+                    width: 50px;
+                }
+
+                label {
+                    width: auto;
+                    @include textFontSize(0.7rem, 0.7rem);
+                }
+            }
+        }
+
+
+        .form .input-group {
+            border-top: none;
+            @include borderRadius(0px 0px 10px 10px);
+
+            .form-group {
+                label {
+                    margin: 0 0 0.1em;
+                    text-transform: capitalize;
+                    font-weight: 100;
+
+                }
+
+                .form-control {
+                    border: 1px solid $offWhite;
+                    background: transparent;
+                    @include textFontSize();
+                }
+            }
+        }
+
+        input[type=submit] {
+            margin-top: 1em;
+            border: 0.5px solid $secondaryColor;
+        }
+
+        [data-forgot-password] {
+            margin: 0.7em 0;
+            color: $offWhite;
+            text-align: center;
+            font-size: calc(0.75rem + 0.1vw);
+        }
+
+
+        @media screen and (min-width: 768px) {
+            margin: $headerHeight-lg auto;
+        }
+    }
+
+}
+
+
+
+/* Login Form Container */
+#login-container {
+    .form-container {
+
+        .form,
+        .input-group,
+        .form-group,
+        .form-control {
+            width: 100%;
+        }
+
+        .input-group,
+        .input[type=submit] {
+            @include borderRadius(3px);
+        }
+
+        .form .input-group {
+            padding-top: 2em;
+            padding-bottom: 2em;
+            @include borderRadius(10px);
+
+            .form-group {
+                border: 1px solid $white;
+                position: relative;
+
+                &:first-child {
+                    margin-bottom: 3em;
+                }
+
+                label {
+                    margin: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    padding: 0.5em;
+                    height: 100%;
+                    @include transform(translate(0, -50%));
+                    cursor: pointer;
+
+                    i.fa {
+                        color: $white;
+                    }
+
+                    i.fa[class*="key"] {
+                        @include transform(rotate(90deg));
+                    }
+                }
+
+                .form-control {
+                    background: transparent;
+                    outline: none;
+                    border: none;
+                    @include textFontSize();
+                }
+            }
+        }
+
+        input[type=submit] {
+            margin-top: 1em;
+            border: 0.5px solid $secondaryColor;
+        }
+
+        [data-forgot-password] {
+            margin: 0.7em 0;
+            color: $offWhite;
+            text-align: center;
+            font-size: calc(0.75rem + 0.1vw);
+        }
+
+        .social-login-options {
+            width: 100%;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 1%;
+
+            .social-login {
+                width: 100%;
+                padding: 0.3em;
+                text-align: center;
+                font-size: calc(0.6rem + 0.1vw);
+                grid-template-columns: 5% 95%;
+                grid-column-gap: 3%;
+                justify-content: center;
+                padding: 0.5em 0;
+                @include alignItems(center);
+                cursor: pointer;
+
+                &:first-child {
+                    background-color: $primaryColor;
+                }
+
+                &:last-child {
+                    background-color: darken($secondaryColor, 10);
+                }
+
+                i {
+                    padding: 0 0.7em;
+                }
+            }
+        }
+
+        .divide-line {
+            margin: 1.5em 0;
+            position: relative;
+            width: 100%;
+
+            p {
+                @include circle(40px);
+                margin: auto;
+                background-color: $white;
+                color: $themeColor;
+                font-weight: 600;
+                justify-content: center;
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                @include transform(translate(-50%, -50%));
+            }
+
+            .hline {
+                content: "";
+                height: 1px;
+                width: 100%;
+                background-color: $white;
+            }
+        }
+
+        .create-account-link {
+            text-transform: uppercase;
+            font-size: calc(0.75rem + 0.1vw);
+            font-weight: 900;
+            padding: 1.3em 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            margin: $headerHeight-lg auto;
+        }
+    }
+}
+
+footer {
+    min-height: $headerHeight-sm;
+    padding: 0.5em 0.875em;
+
+    .privacy-and-tou {
+        justify-content: center;
+        @include alignItems(center);
+
+        .vline {
+            height: 40px;
+            width: 1px;
+            margin: 0 0.5em;
+            background-color: $white;
+        }
+
+        .tou,
+        .privacy {
+            font-size: calc(0.75rem + 0.05vw);
+            text-transform: capitalize;
+            color: $secondaryColor;
+        }
+    }
+}

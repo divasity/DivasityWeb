@@ -1,0 +1,239 @@
+/* ******* Global Core Styles ******* */
+
+* {
+	margin: 0;
+	padding: 0;
+	@include boxSizing(border-box);
+	scroll-behavior: smooth;
+	// @include transition(all 1s ease);
+
+
+	&::-webkit-scrollbar {
+		width: 0.5em;
+		&-track {
+			background-color: $white;
+		}
+	
+		&-thumb {
+			background-color: $pink;
+			@include borderRadius(10px);
+		}
+	}
+
+}
+
+body {
+	font-family: $secondaryFont, "Caviar Dreams", sans-serif;
+	letter-spacing: 1px;
+	line-height: inherit;
+	margin: inherit;
+	background: #ececec;
+	overflow-x: hidden;
+	position: relative;
+	max-width: 100vw;
+}
+
+a,
+.btn {
+	font-family: $secondaryFont;
+	@include textFontSize();
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: $gray;
+
+	&.link {
+		color: $primaryColor;
+	}
+}
+
+.btn {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	text-transform: capitalize;
+	text-align: center;
+	@include borderRadius(10px);
+	padding: 0.8em 1.3em;
+	width: fit-content;
+	color: $white;
+	background: $accent;
+	@include textFontSize();
+}
+
+.btn.btn-full-width {
+	width: 100%;
+}
+
+.btn.btn-shadow {
+	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+	@include transition(all 0.8s ease);
+
+	&:hover {
+		box-shadow: none;
+		box-shadow: 0px -4px 7px rgba(0, 0, 0, 0.3);
+	}
+}
+
+
+
+/* *************** FORMS ************** */
+form.form {
+	width: calc(80% + 1vw);
+	margin: 0 auto;
+	max-width: 500px;
+
+	.form-group {
+		margin-bottom: 1em;
+		@include flex();
+		@include flexDirection(column);
+
+		label {
+			margin-bottom: 0.5em;
+			@include textFontSize();
+		}
+
+		input,
+		select,
+		option,
+		textarea {
+			font-family: $tertiaryFont;
+			padding: 0.5em 0.3em;
+			border: 1px solid rgba(0, 0, 0, 0.3);
+			background: none;
+			font-weight: normal;
+			color: $offWhite;
+			letter-spacing: 1.5px;
+
+			&:focus {
+				outline-color: lighten($color: $tertiaryColor, $amount: 3)
+			}
+		}
+
+		input::placeholder {
+			color: transparentize($color: $white, $amount: 0.05);
+			font-size: 1rem;
+		}
+	}
+
+	.btn {
+		@include textFontSize();
+	}
+
+	@media screen and (min-width: 900px) {
+		&>.form-group {
+			label {
+				margin-bottom: 0.5em;
+			}
+
+			input,
+			select,
+			text-area {
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+	p {
+		font-size: calc(0.65rem + 0.5vw);
+	}
+}
+
+
+/* ********* POSITIONING ******** */
+.x-inline-center {
+	margin: 0 auto;
+}
+
+.x-inline-right {
+	margin-left: auto;
+}
+
+/* ********** LISTS ********** */
+ul {
+	list-style-type: none;
+}
+
+
+/* ********* TYPOGRAPHY ********** */
+.title {
+	font-size: 0.9rem;
+	line-height: 1rem;
+	font-weight: 600;
+	margin-bottom: 0.75em;
+
+	@media screen and (min-width: 576px) {
+		font-size: 1.1rem;
+		line-height: 1.1rem;
+		font-weight: 600;
+	}
+
+	@media screen and (min-width: 768px) {
+		font-size: 1.2rem;
+		line-height: 1.2rem;
+		font-weight: 600;
+	}
+}
+
+.description {
+	font-size: 0.75rem;
+	line-height: 0.75rem;
+
+	@media screen and (min-width: 576px) {
+		font-size: 0.9rem;
+		line-height: 0.9rem;
+	}
+
+	@media screen and (min-width: 768px) {
+		font-size: 1rem;
+		line-height: 1rem;
+	}
+}
+
+
+/********************************************
+***** JAVASCRIPT STYLE NIGGAS *****
+********************************************/
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
+
+.slide-in-x {
+	transform: translateY(30%);
+	box-shadow: 4px 0 5px rgba(0, 0, 0, 0.4);
+
+}
+
+.slide-in-y {
+	transform: translateY(0);
+}
+
+
+
+/* ****** Global Grid Style ****** */
+a {
+	text-decoration: none;
+}
+
+.flex {
+	@include flex();
+}
+
+.flex-row {
+	@include flexDirection(row);
+}
+
+.flex-column {
+	@include flexDirection(column);
+}
+
+/* ****** Global Grid Style ****** */
+.grid {
+	@include grid();
+}
